@@ -21670,7 +21670,7 @@ dl li {
 /* Sidebar */
 .sidebar {
   min-height: calc(100vh - 65px);
-  background: #223e9c;
+  background: #9E2449;
   font-family: "Source Sans Pro", sans-serif;
   font-weight: 600;
   padding: 0;
@@ -21790,7 +21790,7 @@ dl li {
 }
 
 .sidebar .nav .nav-item.active > .nav-link {
-  background: #183188;
+  background: #701A34;
   position: relative;
 }
 
@@ -21813,7 +21813,7 @@ dl li {
 }
 
 .sidebar .nav:not(.sub-menu) > .nav-item:hover > .nav-link {
-  background: #183188;
+  background: #701A34;
   color: #ffffff;
 }
 
@@ -21849,11 +21849,11 @@ dl li {
 }
 
 .sidebar .nav.sub-menu .nav-item .nav-link:hover {
-  color: #93a8ff;
+  color: #2E0A15;
 }
 
 .sidebar .nav.sub-menu .nav-item .nav-link.active {
-  color: #93a8ff;
+  color: #2E0A15;
   background: transparent;
 }
 
@@ -22258,7 +22258,7 @@ dl li {
     display: flex;
     -webkit-align-items: center;
     align-items: center;
-    background: #223e9c;
+    background: #9E2449;
     padding: 0.5rem 1.4rem;
     left: 70px;
     position: absolute;
@@ -22274,13 +22274,13 @@ dl li {
     display: none;
   }
   .sidebar-icon-only .sidebar .nav .nav-item.hover-open .nav-link:hover .menu-title {
-    background: #223e9c;
+    background: #9E2449;
   }
   .sidebar-icon-only .sidebar .nav .nav-item.hover-open .collapse,
   .sidebar-icon-only .sidebar .nav .nav-item.hover-open .collapsing {
     display: block;
     padding: .5rem 0;
-    background: #223e9c;
+    background: #9E2449;
     border-radius: 0 0 5px 0;
     position: absolute;
     left: 70px;
@@ -22295,5 +22295,37 @@ dl li {
     padding-left: 20px;
   }
 }
+body .content-wrapper {
+  /* Estilos para el tema claro */
+  background-color: #f6f7fb;
+}
+
+body.dark-theme .content-wrapper {
+  /* Estilos para el tema oscuro */
+  /* Cambia el color de fondo a lo que quieras para el tema oscuro */
+  background-color: #333;
+}
+.navbar .navbar-menu-wrapper.navbar-search-wrapper {
+  /* Estilos para el tema claro */
+  background-color: #ffffff;
+}
+
+body.dark-theme .navbar .navbar-menu-wrapper.navbar-search-wrapper {
+  /* Estilos para el tema oscuro */
+  /* Cambia el color de fondo a lo que quieras para el tema oscuro */
+  background-color: #333;
+}
+
+.card {
+  /* Estilos para el tema claro */
+  background-color: #fff;
+}
+
+body.dark-theme .card {
+  /* Estilos para el tema oscuro */
+  /* Cambia el color de fondo a lo que quieras para el tema oscuro */
+  background-color: #333;
+}
+
 
 /*# sourceMappingURL=maps/style.css.map */

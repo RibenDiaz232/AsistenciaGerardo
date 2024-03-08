@@ -70,3 +70,23 @@ function fechaMexico()
     );
     return date('d') . " de " . $mes[date('n')] . " de " . date('Y');
 }
+
+echo '
+<script>
+    document.getElementById("themeButton").addEventListener("click", function() {
+        var body = document.body;
+        body.classList.toggle("dark-theme");
+        localStorage.setItem("theme", body.className);
+    });
+</script>
+';
+echo '
+<script>
+    window.onload = function() {
+        var theme = localStorage.getItem("theme");
+        if (theme) {
+            document.body.className = theme;
+        }
+    }
+</script>
+';

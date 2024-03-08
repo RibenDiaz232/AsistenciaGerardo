@@ -21,11 +21,11 @@
   <link rel="stylesheet" href="<?php echo RUTA . 'assets/'; ?>css/jquery-ui.min.css">
   
   <!-- endinject -->
-  <link rel="shortcut icon" href="<?php echo RUTA . 'assets/'; ?>images/logo.svg" />
+  <link rel="shortcut icon" href="<?php echo RUTA . 'assets/'; ?>images/tecnm.ico" />
 </head>
 <body>
   <div class="container-scroller d-flex">
-    <!-- partial:./partials/_sidebar.html -->
+  
     <nav class="sidebar sidebar-offcanvas" id="sidebar">
       <ul class="nav">
         <li class="nav-item sidebar-category">
@@ -80,7 +80,9 @@
             <span class="menu-title">Asistencia</span>
           </a>
         </li>
+
       </ul>
+      <button id="themeButton">Cambiar Tema</button>
     </nav>
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
