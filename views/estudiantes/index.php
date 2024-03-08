@@ -5,8 +5,8 @@
             <div class="row">
                 <div class="col-md-2">
                     <div class="form-group">
-                        <label for="codigo">Código <span class="text-danger">*</span></label>
-                        <input id="codigo" class="form-control" type="text" name="codigo" placeholder="Código">
+                        <label for="codigo">Matrícula <span class="text-danger">*</span></label>
+                        <input id="codigo" class="form-control" type="text" name="codigo" placeholder="Matrícula">
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -63,7 +63,7 @@
                     <tr>
                         <th scope="col">Id</th>
                         <th scope="col">Carrera</th>
-                        <th scope="col">Código</th>
+                        <th scope="col">Matrícula</th>
                         <th scope="col">Nombres</th>
                         <th scope="col">Telefono</th>
                         <th scope="col">Dirección</th>                        

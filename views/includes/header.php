@@ -80,9 +80,10 @@
             <span class="menu-title">Asistencia</span>
           </a>
         </li>
-
       </ul>
-      <button id="themeButton">Cambiar Tema</button>
+      
+        <button id="themeButton">Cambiar Tema (Pendiente de Asignar y posición)</button>
+      
     </nav>
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
@@ -110,7 +111,7 @@
           <ul class="navbar-nav mr-lg-2">
             <li class="nav-item nav-search d-none d-lg-block">
               <div class="input-group">
-                <input type="text" id="buscarEstudiante" class="form-control" placeholder="Buscar..." aria-label="search" aria-describedby="search">
+                <input type="text" id="buscarEstudiante" class="form-control" placeholder="Buscar por matrícula..." aria-label="search" aria-describedby="search">
               </div>
             </li>
           </ul>

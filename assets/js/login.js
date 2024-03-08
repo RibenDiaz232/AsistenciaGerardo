@@ -2,6 +2,24 @@ const frm = document.querySelector('#frmLogin');
 const email = document.querySelector('#email');
 const password = document.querySelector('#password');
 
+// Agrega una clase cuando el usuario enfoca un elemento de entrada
+email.addEventListener('focus', function() {
+    this.parentNode.classList.add('focused');
+});
+
+password.addEventListener('focus', function() {
+    this.parentNode.classList.add('focused');
+});
+
+// Elimina la clase cuando el usuario deja de enfocar un elemento de entrada
+email.addEventListener('blur', function() {
+    this.parentNode.classList.remove('focused');
+});
+
+password.addEventListener('blur', function() {
+    this.parentNode.classList.remove('focused');
+});
+
 document.addEventListener('DOMContentLoaded', function () {
     var working = false;
     frm.onsubmit = function (e) {
@@ -14,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
             var $this = $(this),
                 $state = $this.find('button > .state');
             $this.addClass('loading');
-            $state.html('Authenticating');
+            $state.html('Autentincando');
 
             axios.post(ruta + 'controllers/usuariosController.php?option=acceso', {
                 email: email.value,
@@ -25,30 +43,18 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (info.tipo == 'success') {
                         setTimeout(() => {
                             $this.addClass('ok');
-                            $state.html('Welcome back!'); $this.addClass('ok');
-                            $state.html('Welcome back!');
+                            $state.html('welcome back!'); $this.addClass('ok');
+                            $state.html('¡Bienvenido de vuelta!');
                             setTimeout(() => {
                                 window.location = ruta + 'plantilla.php';
                             }, 2000);
 
                         }, 3000);
-
-                    } else {
-                        setTimeout(function () {
-                            $state.html('Login');
-                            $this.removeClass('ok loading');
-                            working = false;
-                            message(info.tipo, info.mensaje);
-                        }, 2000);
                     }
-                })
-                .catch(function (error) {
-                    console.log(error);
                 });
         }
-    }
-
-})
+    };
+});
 
 function message(tipo, mensaje) {
     Snackbar.show({

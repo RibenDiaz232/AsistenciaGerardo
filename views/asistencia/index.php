@@ -22,7 +22,7 @@
                     <tr>
                         <th scope="col">Id</th>
                         <th scope="col">Fecha</th>
-                        <th scope="col">Código</th>
+                        <th scope="col">Matrícula</th>
                         <th scope="col">Estudiante</th>
                         <th scope="col">Carrera</th>
                         <th scope="col">Nivel</th>

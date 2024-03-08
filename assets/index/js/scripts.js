@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
     contactForm.onsubmit = function (e) {
         e.preventDefault();
         if (codigo.value == '') {
-            message('error', 'EL CODIGO ES REQUERIDO');
+            message('error', 'LA MATRÍCULA ES REQUERIDO');
         } else {
             const data = new FormData(contactForm);
             axios.post(ruta + 'controllers/asistenciaController.php?option=registrar', data)

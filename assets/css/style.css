@@ -22295,37 +22295,13 @@ dl li {
     padding-left: 20px;
   }
 }
-body .content-wrapper {
-  /* Estilos para el tema claro */
-  background-color: #f6f7fb;
-}
 
-body.dark-theme .content-wrapper {
-  /* Estilos para el tema oscuro */
-  /* Cambia el color de fondo a lo que quieras para el tema oscuro */
-  background-color: #333;
+.bottom-nav {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 10px 0; /* Añade un padding para separar el botón de los bordes de la barra de navegación */
 }
-.navbar .navbar-menu-wrapper.navbar-search-wrapper {
-  /* Estilos para el tema claro */
-  background-color: #ffffff;
-}
-
-body.dark-theme .navbar .navbar-menu-wrapper.navbar-search-wrapper {
-  /* Estilos para el tema oscuro */
-  /* Cambia el color de fondo a lo que quieras para el tema oscuro */
-  background-color: #333;
-}
-
-.card {
-  /* Estilos para el tema claro */
-  background-color: #fff;
-}
-
-body.dark-theme .card {
-  /* Estilos para el tema oscuro */
-  /* Cambia el color de fondo a lo que quieras para el tema oscuro */
-  background-color: #333;
-}
-
-
 /*# sourceMappingURL=maps/style.css.map */

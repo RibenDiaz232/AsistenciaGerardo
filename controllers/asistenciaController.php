@@ -40,7 +40,7 @@ switch ($option) {
         $accion = $_POST['radio'];
         $consult = $asistencias->getEstudiante($codigo);
         if (empty($consult)) {
-            $res = array('tipo' => 'error', 'mensaje' => 'EL CODIGO NO EXISTE');
+            $res = array('tipo' => 'error', 'mensaje' => 'LA MATRÍCULANO EXISTE');
         } else {
             $fecha = date('Y-m-d');
             if ($accion == 'entrada') {

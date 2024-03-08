@@ -37,7 +37,7 @@ switch ($option) {
                     $res = array('tipo' => 'error', 'mensaje' => 'ERROR AL AGREGAR');
                 }
             } else {
-                $res = array('tipo' => 'error', 'mensaje' => 'EL CODIGO YA EXISTE');
+                $res = array('tipo' => 'error', 'mensaje' => 'LA MATRÍCULAYA EXISTE');
             }
         } else {
             $consult = $estudiantes->comprobarCodigo($codigo, $id_estudiante);
@@ -49,7 +49,7 @@ switch ($option) {
                     $res = array('tipo' => 'error', 'mensaje' => 'ERROR AL MODIFICAR');
                 }
             } else {
-                $res = array('tipo' => 'error', 'mensaje' => 'EL CODIGO YA EXISTE');
+                $res = array('tipo' => 'error', 'mensaje' => 'LA MATRÍCULAYA EXISTE');
             }
         }
         echo json_encode($res);

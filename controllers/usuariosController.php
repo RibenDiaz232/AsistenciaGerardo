@@ -90,7 +90,7 @@ switch ($option) {
         if (empty($_SESSION)) {
             $res = array('tipo' => 'error', 'mensaje' => 'ERROR AL SALIR');
         } else {
-            $res = array('tipo' => 'success', 'mensaje' => 'OK');
+            $res = array('tipo' => 'success', 'mensaje' => 'SALIENDO...');
         }
         echo json_encode($res);        
         break;

@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Registro de asistencia</title>
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <title>SRA</title>
+    <link rel="shortcut icon" href="<?php echo RUTA . 'assets/'; ?>images/tecnm.ico" />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     <!-- Google fonts-->
@@ -24,6 +24,11 @@
     <!-- Masthead-->
     <div class="masthead">
         <div class="masthead-content text-white">
+        <div class="text-center">
+            <div class="logo">
+                <img src="<?php echo RUTA . 'assets/images/itsmt.svg'; ?>" alt="Logo Institucional" class="logo-img">
+            </div>
+        </div>
             <div class="container-fluid px-lg-0">
                 <div class="widget">
                     <div class="fecha">
@@ -45,12 +50,12 @@
                         </div>
                     </div>
                 </div>
-                <h1 class="fst-italic lh-1 mb-4">Sistema de registro de asistencia</h1>
+                <h1 class="fst-italic lh-1 mb-4" style="font-family: Arial;">Sistema de Registro de Asistencia</h1>
                 <p class="mb-5">Entradas y salidas de las personas</p>
                 <form id="contactForm" autocomplete="off">
                     <!-- Email address input-->
                     <div class="row input-group-newsletter">
-                        <div class="col"><input class="form-control" id="codigo" name="codigo" type="text" placeholder="Ingrese código" /></div>
+                        <div class="col"><input class="form-control" id="codigo" name="codigo" type="text" placeholder="Ingrese su matrícula" /></div>
                         <div class="col-auto"><button class="btn btn-primary" id="submitButton" type="submit">Registrar</button></div>
                     </div>
 

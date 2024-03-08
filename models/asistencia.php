@@ -59,7 +59,7 @@ class AsistenciaModel{
 
     public function buscarEstudiante($valor)
     {
-        $consult = $this->pdo->prepare("SELECT * FROM estudiantes WHERE nombre LIKE '%". $valor . "%' AND estado = 1 LIMIT 10");
+        $consult = $this->pdo->prepare("SELECT * FROM estudiantes WHERE codigo LIKE '%". $valor . "%' AND estado = 1 LIMIT 10");
         $consult->execute();
         return $consult->fetchAll(PDO::FETCH_ASSOC);
     }

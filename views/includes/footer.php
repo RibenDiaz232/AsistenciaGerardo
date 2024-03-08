@@ -5,8 +5,8 @@
           <div class="card">
             <div class="card-body">
               <div class="d-sm-flex justify-content-center justify-content-sm-between py-2">
-                <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © <a href="https://www.bootstrapdash.com/" target="_blank">bootstrapdash.com </a>2021</span>
-                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Only the best <a href="https://www.bootstrapdash.com/" target="_blank"> Bootstrap dashboard </a> templates</span>
+                <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright ©2024</span>
+                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Actividad relacionada con Ingeniería de Software, ISC</span>
               </div>
             </div>
           </div>
@@ -81,9 +81,9 @@
 
     function salir(params) {
       Snackbar.show({
-    text: 'Esta seguro de salir',
+    text: '¿Esta seguro de salir?',
     width: '475px',
-    actionText: 'Si salir',
+    actionText: 'Salir',
     backgroundColor: '#FF0303',
     onActionClick: function (element) {
       axios.get(ruta + 'controllers/usuariosController.php?option=logout')
