@@ -1,6 +1,6 @@
 <?php
 require_once 'config.php';
-require_once '../ASISTENCIAGERARDO/controllers/plantillaController.php';
+require_once 'controllers/plantillaController.php';
 $plantilla = new Plantilla();
 
 $archivo = (!empty($_GET['pagina'])) ? $_GET['pagina'] : null;
@@ -16,7 +16,7 @@ if (empty($id_user)) {
 }
 
 ##### HEADER ####
-require_once '../views/includes/header.php';
+require_once 'views/includes/header.php';
 
 if (isset($_GET['pagina'])) {
     if (empty($_GET['pagina'])) {
@@ -50,7 +50,7 @@ if (isset($_GET['pagina'])) {
 } else {
     $plantilla->index();
 }
-require_once '../views/includes/footer.php';
+require_once 'views/includes/footer.php';
 
 function fechaMexico()
 {
