@@ -10,6 +10,7 @@ function totales() {
             document.querySelector('#totalEst').textContent = info.estudiante.total;
             document.querySelector('#totalAsistencia').textContent = info.asistencia.total;
             document.querySelector('#totalCarreras').textContent = info.carrera.total;
+            document.querySelector('#totalGrupos').textContent = info.grupo.total;
         })
         .catch(function (error) {
             console.log(error);
