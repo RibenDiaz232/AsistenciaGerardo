@@ -63,9 +63,9 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="?pagina=niveles">
+          <a class="nav-link" href="?pagina=semestres">
             <i class="mdi mdi-tag menu-icon"></i>
-            <span class="menu-title">Niveles</span>
+            <span class="menu-title">Semestres</span>
           </a>
         </li>
         <li class="nav-item">

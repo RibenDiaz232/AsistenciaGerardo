@@ -5,8 +5,8 @@
             <div class="row">
                 <div class="col-md-2">
                     <div class="form-group">
-                        <label for="codigo">Matrícula <span class="text-danger">*</span></label>
-                        <input id="codigo" class="form-control" type="text" name="codigo" placeholder="Matrícula">
+                        <label for="matricula">Matrícula <span class="text-danger">*</span></label>
+                        <input id="matricula" class="form-control" type="text" name="matricula" placeholder="Matrícula">
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -42,8 +42,8 @@
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label for="nivel">Nivel <span class="text-danger">*</span></label>
-                        <select id="nivel" class="form-control" name="nivel">
+                        <label for="semestre">Semestre <span class="text-danger">*</span></label>
+                        <select id="semestre" class="form-control" name="semestre">
                         </select>
                     </div>
                 </div>
@@ -67,7 +67,7 @@
                         <th scope="col">Nombres</th>
                         <th scope="col">Telefono</th>
                         <th scope="col">Dirección</th>                        
-                        <th scope="col">Nivel</th>
+                        <th scope="col">Semestre</th>
                         <th></th>
                     </tr>
                 </thead>

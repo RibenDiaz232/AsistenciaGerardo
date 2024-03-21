@@ -10,15 +10,15 @@ class AsistenciaModel{
 
     public function getAsistencias()
     {
-        $consult = $this->pdo->prepare("SELECT a.*, e.codigo, CONCAT(e.nombre, ' ', e.apellido) AS estudiante, c.nombre AS carrera, n.nombre AS nivel FROM asistencias a INNER JOIN estudiantes e ON a.id_estudiante = e.id INNER JOIN carreras c ON e.id_carrera = c.id INNER JOIN niveles n ON e.id_nivel = n.id");
+        $consult = $this->pdo->prepare("SELECT a.*, e.matricula, CONCAT(e.nombre, ' ', e.apellido) AS estudiante, c.nombre AS carrera, n.nombre AS semestre FROM asistencias a INNER JOIN estudiantes e ON a.id_estudiante = e.id INNER JOIN carreras c ON e.id_carrera = c.id INNER JOIN semestres n ON e.id_semestre = n.id");
         $consult->execute();
         return $consult->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getFiltro($carrera, $nivel)
+    public function getFiltro($carrera, $semestre)
     {
-        $consult = $this->pdo->prepare("SELECT a.*, CONCAT(e.nombre, ' ', e.apellido) AS estudiante FROM asistencias a INNER JOIN estudiantes e ON a.id_estudiante = e.id INNER JOIN carreras c ON e.id_carrera = c.id INNER JOIN niveles n ON e.id_nivel = n.id WHERE c.id = ? AND n.id = ?");
-        $consult->execute([$carrera, $nivel]);
+        $consult = $this->pdo->prepare("SELECT a.*, CONCAT(e.nombre, ' ', e.apellido) AS estudiante FROM asistencias a INNER JOIN estudiantes e ON a.id_estudiante = e.id INNER JOIN carreras c ON e.id_carrera = c.id INNER JOIN semestres n ON e.id_semestre = n.id WHERE c.id = ? AND n.id = ?");
+        $consult->execute([$carrera, $semestre]);
         return $consult->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -31,10 +31,10 @@ class AsistenciaModel{
 
     //
 
-    public function getEstudiante($codigo)
+    public function getEstudiante($matricula)
     {
-        $consult = $this->pdo->prepare("SELECT * FROM estudiantes WHERE codigo = ? AND estado = ?");
-        $consult->execute([$codigo, 1]);
+        $consult = $this->pdo->prepare("SELECT * FROM estudiantes WHERE matricula = ? AND estado = ?");
+        $consult->execute([$matricula, 1]);
         return $consult->fetch(PDO::FETCH_ASSOC);
     }
 
@@ -59,7 +59,7 @@ class AsistenciaModel{
 
     public function buscarEstudiante($valor)
     {
-        $consult = $this->pdo->prepare("SELECT * FROM estudiantes WHERE codigo LIKE '%". $valor . "%' AND estado = 1 LIMIT 10");
+        $consult = $this->pdo->prepare("SELECT * FROM estudiantes WHERE matricula LIKE '%". $valor . "%' AND estado = 1 LIMIT 10");
         $consult->execute();
         return $consult->fetchAll(PDO::FETCH_ASSOC);
     }

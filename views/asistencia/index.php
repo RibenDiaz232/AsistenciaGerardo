@@ -10,8 +10,8 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="nivel">Nivel</label>
-                    <select id="nivel" class="form-control">
+                    <label for="semestre">Semestre</label>
+                    <select id="semestre" class="form-control">
                     </select>
                 </div>
             </div>
@@ -25,7 +25,7 @@
                         <th scope="col">Matrícula</th>
                         <th scope="col">Estudiante</th>
                         <th scope="col">Carrera</th>
-                        <th scope="col">Nivel</th>
+                        <th scope="col">Semestre</th>
                         <th scope="col">Ingreso</th>
                         <th scope="col">Salida</th>
                         <th></th>

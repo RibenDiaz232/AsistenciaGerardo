@@ -10,7 +10,7 @@ class EstudiantesModel{
 
     public function getEstudiantes()
     {
-        $consult = $this->pdo->prepare("SELECT e.*, c.nombre AS carrera, n.nombre AS nivel FROM estudiantes e INNER JOIN carreras c ON e.id_carrera = c.id INNER JOIN niveles n ON e.id_nivel = n.id WHERE e.estado = 1");
+        $consult = $this->pdo->prepare("SELECT e.*, c.nombre AS carrera, n.nombre AS semestre FROM estudiantes e INNER JOIN carreras c ON e.id_carrera = c.id INNER JOIN semestres n ON e.id_semestre = n.id WHERE e.estado = 1");
         $consult->execute();
         return $consult->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -29,22 +29,22 @@ class EstudiantesModel{
         return $consult->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function comprobarCodigo($codigo, $accion)
+    public function comprobarMatrícula($matricula, $accion)
     {
         if ($accion == 0) {
-            $consult = $this->pdo->prepare("SELECT * FROM estudiantes WHERE codigo = ?");
-            $consult->execute([$codigo]);
+            $consult = $this->pdo->prepare("SELECT * FROM estudiantes WHERE matricula = ?");
+            $consult->execute([$matricula]);
         } else {
-            $consult = $this->pdo->prepare("SELECT * FROM estudiantes WHERE codigo = ? AND id != ?");
-            $consult->execute([$codigo, $accion]);
+            $consult = $this->pdo->prepare("SELECT * FROM estudiantes WHERE matricula = ? AND id != ?");
+            $consult->execute([$matricula, $accion]);
         }
         return $consult->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function save($codigo, $nombre, $apellido, $telefono, $direccion, $carrera,$nivel)
+    public function save($matricula, $nombre, $apellido, $telefono, $direccion, $carrera,$semestre)
     {
-        $consult = $this->pdo->prepare("INSERT INTO estudiantes (codigo, nombre, apellido, telefono, direccion, id_carrera, id_nivel) VALUES (?,?,?,?,?,?,?)");
-        return $consult->execute([$codigo, $nombre, $apellido, $telefono, $direccion, $carrera,$nivel]);
+        $consult = $this->pdo->prepare("INSERT INTO estudiantes (matricula, nombre, apellido, telefono, direccion, id_carrera, id_semestre) VALUES (?,?,?,?,?,?,?)");
+        return $consult->execute([$matricula, $nombre, $apellido, $telefono, $direccion, $carrera,$semestre]);
     }
 
     public function delete($id)
@@ -53,9 +53,9 @@ class EstudiantesModel{
         return $consult->execute([0, $id]);
     }
 
-    public function update($codigo, $nombre, $apellido, $telefono, $direccion, $carrera,$nivel, $id)
+    public function update($matricula, $nombre, $apellido, $telefono, $direccion, $carrera,$semestre, $id)
     {
-        $consult = $this->pdo->prepare("UPDATE estudiantes SET codigo=?, nombre=?, apellido=?, telefono=?, direccion=?, id_carrera=?, id_nivel=? WHERE id=?");
-        return $consult->execute([$codigo, $nombre, $apellido, $telefono, $direccion, $carrera,$nivel, $id]);
+        $consult = $this->pdo->prepare("UPDATE estudiantes SET matricula=?, nombre=?, apellido=?, telefono=?, direccion=?, id_carrera=?, id_semestre=? WHERE id=?");
+        return $consult->execute([$matricula, $nombre, $apellido, $telefono, $direccion, $carrera,$semestre, $id]);
     }
 }
