@@ -32,6 +32,8 @@ if (isset($_GET['pagina'])) {
                 $plantilla->estudiantes();
             } else if ($archivo == 'semestres') {
                 $plantilla->semestres();
+            } else if ($archivo == 'grupos') {
+                $plantilla->grupos();
             } else if ($archivo == 'carreras') {
                 $plantilla->carreras();
             } else if ($archivo == 'asistencia') {

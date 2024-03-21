@@ -19,6 +19,10 @@ class Plantilla{
     {
         include_once 'views/estudiantes/semestre.php';
     }
+    public function grupos()
+    {
+        include_once 'views/estudiantes/grupo.php';
+    }
     public function carreras()
     {
         include_once 'views/estudiantes/carrera.php';

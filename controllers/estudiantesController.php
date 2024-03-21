@@ -8,9 +8,11 @@ switch ($option) {
         for ($i = 0; $i < count($data); $i++) {
             $colorSemestre = substr(md5($data[$i]['id_semestre']), 0, 6);
             $colorCarrera = substr(md5($data[$i]['id_carrera']), 0, 6);
+            $colorGrupo = substr(md5($data[$i]['id_grupo']), 0, 6);
             $data[$i]['nombres'] = $data[$i]['nombre'] . ' ' . $data[$i]['apellido'];
             $data[$i]['carreras'] = '<span class="badge mx-1" style="background: #'.$colorCarrera.';">'.$data[$i]['carrera'].'</span>';
             $data[$i]['semestres'] = '<span class="badge mx-1" style="background: #'.$colorSemestre.';">'.$data[$i]['semestre'].'</span>';
+            $data[$i]['grupos'] = '<span class="badge mx-1" style="background: #'.$colorGrupo.';">'.$data[$i]['grupo'].'</span>';
             $data[$i]['accion'] = '<div class="d-flex">
                 <a class="btn btn-danger btn-sm" onclick="deleteEst(' . $data[$i]['id'] . ')"><i class="fas fa-eraser"></i></a>
                 <a class="btn btn-primary btn-sm" onclick="editEst(' . $data[$i]['id'] . ')"><i class="fas fa-edit"></i></a>
@@ -26,6 +28,7 @@ switch ($option) {
         $direccion = $_POST['direccion'];
         $carrera = $_POST['carrera'];
         $semestre = $_POST['semestre'];
+        $grupo = $_POST['grupo'];
         $id_estudiante = $_POST['id_estudiante'];
         if ($id_estudiante == '') {
             $consult = $estudiantes->comprobarMatrícula($matricula, 0);

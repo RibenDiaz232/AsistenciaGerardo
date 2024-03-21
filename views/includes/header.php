@@ -80,6 +80,12 @@
             <span class="menu-title">Asistencia</span>
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="?pagina=grupos">
+            <i class="mdi mdi-group menu-icon"></i>
+            <span class="menu-title">Grupos</span>
+          </a>
+        </li>
       </ul>
       
         <button id="themeButton">Cambiar Tema (Pendiente de Asignar y posición)</button>
