@@ -12,7 +12,7 @@ switch ($option) {
             $data[$i]['nombres'] = $data[$i]['nombre'] . ' ' . $data[$i]['apellido'];
             $data[$i]['carreras'] = '<span class="badge mx-1" style="background: #'.$colorCarrera.';">'.$data[$i]['carrera'].'</span>';
             $data[$i]['semestres'] = '<span class="badge mx-1" style="background: #'.$colorSemestre.';">'.$data[$i]['semestre'].'</span>';
-            $data[$i]['grupos'] = '<span class="badge mx-1" style="background: #'.$colorGrupo.';">'.$data[$i]['grupo'].'</span>';
+            $data[$i]['grupos'] = '<span class="badge mx-1" style="background: #'.$colorSemestre.';">'.$data[$i]['grupo'].'</span>';
             $data[$i]['accion'] = '<div class="d-flex">
                 <a class="btn btn-danger btn-sm" onclick="deleteEst(' . $data[$i]['id'] . ')"><i class="fas fa-eraser"></i></a>
                 <a class="btn btn-primary btn-sm" onclick="editEst(' . $data[$i]['id'] . ')"><i class="fas fa-edit"></i></a>
@@ -33,7 +33,7 @@ switch ($option) {
         if ($id_estudiante == '') {
             $consult = $estudiantes->comprobarMatrícula($matricula, 0);
             if (empty($consult)) {
-                $result = $estudiantes->save($matricula, $nombre, $apellido, $telefono, $direccion, $carrera, $semestre);
+                $result = $estudiantes->save($matricula, $nombre, $apellido, $telefono, $direccion, $carrera, $semestre, $grupo);
                 if ($result) {
                     $res = array('tipo' => 'success', 'mensaje' => 'ESTUDIANTE REGISTRADO');
                 } else {
@@ -45,14 +45,14 @@ switch ($option) {
         } else {
             $consult = $estudiantes->comprobarMatrícula($matricula, $id_estudiante);
             if (empty($consult)) {
-                $result = $estudiantes->update($matricula, $nombre, $apellido, $telefono, $direccion, $carrera, $semestre, $id_estudiante);
+                $result = $estudiantes->update($matricula, $nombre, $apellido, $telefono, $direccion, $carrera, $semestre,$grupo, $id_estudiante);
                 if ($result) {
                     $res = array('tipo' => 'success', 'mensaje' => 'ESTUDIANTE MODIFICADO');
                 } else {
                     $res = array('tipo' => 'error', 'mensaje' => 'ERROR AL MODIFICAR');
                 }
             } else {
-                $res = array('tipo' => 'error', 'mensaje' => 'LA MATRÍCULAYA EXISTE');
+                $res = array('tipo' => 'error', 'mensaje' => 'LA MATRÍCULA YA EXISTE');
             }
         }
         echo json_encode($res);

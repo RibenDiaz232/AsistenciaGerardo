@@ -6,6 +6,7 @@ const apellido = document.querySelector('#apellido');
 const direccion = document.querySelector('#direccion');
 const carrera = document.querySelector('#carrera');
 const semestre = document.querySelector('#semestre');
+const grupo = document.querySelector('#grupo');
 const id_estudiante = document.querySelector('#id_estudiante');
 const btn_nuevo = document.querySelector('#btn-nuevo');
 const btn_save = document.querySelector('#btn-save');
@@ -13,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
   
   cargarCarreras();
   cargarSemestres();
+  cargarGrupos();
 
   $('#table_estudiantes').DataTable({
     ajax: {
@@ -21,12 +23,13 @@ document.addEventListener('DOMContentLoaded', function () {
     },
     columns: [
       { data: 'id' },
-      { data: 'carreras' },
       { data: 'matricula' },
       { data: 'nombres' },
       { data: 'telefono' },
       { data: 'direccion' },      
       { data: 'semestres' },
+      { data: 'carreras' },
+      { data: 'grupos' },
       { data: 'accion' }
     ],
     language: {
@@ -37,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
   frm.onsubmit = function (e) {
     e.preventDefault();
     if (matricula.value == '' || telefono.value == '' || nombre.value == ''
-    || apellido.value == '' || direccion.value == '' || carrera.value == '' || semestre.value == '') {
+    || apellido.value == '' || direccion.value == '' || carrera.value == '' || semestre.value == ''|| grupo.value == '') {
       message('error', 'TODO LOS CAMPOS CON * SON REQUERIDOS')
     } else {
       const frmData = new FormData(frm);
@@ -96,9 +99,11 @@ function editEst(id) {
       matricula.value = info.matricula;
       telefono.value = info.telefono;
       nombre.value = info.nombre;
+      apellido.value = info.apellido;
       direccion.value = info.direccion;
       carrera.value = info.id_carrera;
       semestre.value = info.id_semestre;
+      grupo.value = info.id_grupo;
       id_estudiante.value = info.id;
       btn_save.innerHTML = 'Actualizar';
       matricula.focus();
@@ -132,6 +137,21 @@ function cargarSemestres() {
         html += `<option value="${semestre.id}">${semestre.nombre}</option>`;
       });
       semestre.innerHTML = html;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+}
+
+function cargarGrupos() {
+  axios.get(ruta + 'controllers/estudiantesController.php?option=datos&item=grupos')
+    .then(function (response) {
+      const info = response.data;
+      let html = '<option value="">Seleccionar</option>';
+      info.forEach(grupo => {
+        html += `<option value="${grupo.id}">${grupo.nombre}</option>`;
+      });
+      grupo.innerHTML = html;
     })
     .catch(function (error) {
       console.log(error);

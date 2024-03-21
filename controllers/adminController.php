@@ -10,6 +10,7 @@ switch ($option) {
         $data['estudiante'] = $admin->getDatos('estudiantes');
         $data['asistencia'] = $admin->getAsistencia($fecha);
         $data['carrera'] = $admin->getDatos('carreras');
+        $data['grupo'] = $admin->getDatos('grupos');
         echo json_encode($data);
         break;
     case 'datos':
