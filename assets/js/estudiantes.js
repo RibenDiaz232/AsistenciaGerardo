@@ -1,18 +1,20 @@
 const frm = document.querySelector('#frmEstudiante');
-const codigo = document.querySelector('#codigo');
+const matricula = document.querySelector('#matricula');
 const telefono = document.querySelector('#telefono');
 const nombre = document.querySelector('#nombre');
 const apellido = document.querySelector('#apellido');
 const direccion = document.querySelector('#direccion');
 const carrera = document.querySelector('#carrera');
-const nivel = document.querySelector('#nivel');
+const semestre = document.querySelector('#semestre');
+const grupo = document.querySelector('#grupo');
 const id_estudiante = document.querySelector('#id_estudiante');
 const btn_nuevo = document.querySelector('#btn-nuevo');
 const btn_save = document.querySelector('#btn-save');
 document.addEventListener('DOMContentLoaded', function () {
   
   cargarCarreras();
-  cargarNiveles();
+  cargarSemestres();
+  cargarGrupos();
 
   $('#table_estudiantes').DataTable({
     ajax: {
@@ -21,12 +23,13 @@ document.addEventListener('DOMContentLoaded', function () {
     },
     columns: [
       { data: 'id' },
-      { data: 'carreras' },
-      { data: 'codigo' },
+      { data: 'matricula' },
       { data: 'nombres' },
       { data: 'telefono' },
       { data: 'direccion' },      
-      { data: 'niveles' },
+      { data: 'semestres' },
+      { data: 'carreras' },
+      { data: 'grupos' },
       { data: 'accion' }
     ],
     language: {
@@ -36,8 +39,8 @@ document.addEventListener('DOMContentLoaded', function () {
   });
   frm.onsubmit = function (e) {
     e.preventDefault();
-    if (codigo.value == '' || telefono.value == '' || nombre.value == ''
-    || apellido.value == '' || direccion.value == '' || carrera.value == '' || nivel.value == '') {
+    if (matricula.value == '' || telefono.value == '' || nombre.value == ''
+    || apellido.value == '' || direccion.value == '' || carrera.value == '' || semestre.value == ''|| grupo.value == '') {
       message('error', 'TODO LOS CAMPOS CON * SON REQUERIDOS')
     } else {
       const frmData = new FormData(frm);
@@ -60,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
     frm.reset();
     id_estudiante.value = '';
     btn_save.innerHTML = 'Guardar';
-    codigo.focus();
+    matricula.focus();
   }
 })
 
@@ -93,15 +96,17 @@ function editEst(id) {
   axios.get(ruta + 'controllers/estudiantesController.php?option=edit&id=' + id)
     .then(function (response) {
       const info = response.data;
-      codigo.value = info.codigo;
+      matricula.value = info.matricula;
       telefono.value = info.telefono;
       nombre.value = info.nombre;
+      apellido.value = info.apellido;
       direccion.value = info.direccion;
       carrera.value = info.id_carrera;
-      nivel.value = info.id_nivel;
+      semestre.value = info.id_semestre;
+      grupo.value = info.id_grupo;
       id_estudiante.value = info.id;
       btn_save.innerHTML = 'Actualizar';
-      codigo.focus();
+      matricula.focus();
     })
     .catch(function (error) {
       console.log(error);
@@ -123,15 +128,30 @@ function cargarCarreras() {
     });
 }
 
-function cargarNiveles() {
-  axios.get(ruta + 'controllers/estudiantesController.php?option=datos&item=niveles')
+function cargarSemestres() {
+  axios.get(ruta + 'controllers/estudiantesController.php?option=datos&item=semestres')
     .then(function (response) {
       const info = response.data;
       let html = '<option value="">Seleccionar</option>';
-      info.forEach(nivel => {
-        html += `<option value="${nivel.id}">${nivel.nombre}</option>`;
+      info.forEach(semestre => {
+        html += `<option value="${semestre.id}">${semestre.nombre}</option>`;
       });
-      nivel.innerHTML = html;
+      semestre.innerHTML = html;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+}
+
+function cargarGrupos() {
+  axios.get(ruta + 'controllers/estudiantesController.php?option=datos&item=grupos')
+    .then(function (response) {
+      const info = response.data;
+      let html = '<option value="">Seleccionar</option>';
+      info.forEach(grupo => {
+        html += `<option value="${grupo.id}">${grupo.nombre}</option>`;
+      });
+      grupo.innerHTML = html;
     })
     .catch(function (error) {
       console.log(error);

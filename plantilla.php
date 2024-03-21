@@ -30,13 +30,15 @@ if (isset($_GET['pagina'])) {
                 $plantilla->configuracion();
             } else if ($archivo == 'estudiantes') {
                 $plantilla->estudiantes();
-            } else if ($archivo == 'niveles') {
-                $plantilla->niveles();
+            } else if ($archivo == 'semestres') {
+                $plantilla->semestres();
+            } else if ($archivo == 'grupos') {
+                $plantilla->grupos();
             } else if ($archivo == 'carreras') {
                 $plantilla->carreras();
             } else if ($archivo == 'asistencia') {
                 $plantilla->asistencia();
-            } else if ($archivo == 'ver' && !empty($_GET['nivel'])) {
+            } else if ($archivo == 'ver' && !empty($_GET['semestre'])) {
                 $plantilla->ver();
             } else if ($archivo == 'verAsistencia' && !empty($_GET['estudiante'])) {
                 $plantilla->verAsistencia();

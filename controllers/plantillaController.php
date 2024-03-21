@@ -15,9 +15,13 @@ class Plantilla{
     {
         include_once 'views/estudiantes/index.php';
     }
-    public function niveles()
+    public function semestres()
     {
-        include_once 'views/estudiantes/nivel.php';
+        include_once 'views/estudiantes/semestre.php';
+    }
+    public function grupos()
+    {
+        include_once 'views/estudiantes/grupo.php';
     }
     public function carreras()
     {

@@ -1,5 +1,5 @@
 const contactForm = document.querySelector('#contactForm');
-const codigo = document.querySelector('#codigo');
+const matricula = document.querySelector('#matricula');
 const entrada = document.querySelector('#entrada');
 const salida = document.querySelector('#salida');
 document.addEventListener('DOMContentLoaded', function () {
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     contactForm.onsubmit = function (e) {
         e.preventDefault();
-        if (codigo.value == '') {
+        if (matricula.value == '') {
             message('error', 'LA MATRÍCULA ES REQUERIDO');
         } else {
             const data = new FormData(contactForm);
@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     const info = response.data;
                     message(info.tipo, info.mensaje);
                     if (info.tipo == 'success') {
-                        codigo.value = '';
+                        matricula.value = '';
                     }
                 })
                 .catch(function (error) {

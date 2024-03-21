@@ -15,8 +15,9 @@ switch ($option) {
         break;
     case 'asistencia':
         $carrera = $_GET['carrera'];
-        $nivel = $_GET['nivel'];
-        $data = $asistencias->getFiltro($carrera, $nivel);
+        $semestre = $_GET['semestre'];
+        $grupo = $_GET['grupo'];
+        $data = $asistencias->getFiltro($carrera, $semestre, $grupo);
         for ($i = 0; $i < count($data); $i++) {
             $data[$i]['start'] = $data[$i]['ingreso'];
             $data[$i]['end'] = $data[$i]['salida'];
@@ -36,11 +37,11 @@ switch ($option) {
             echo json_encode($data);
             break;
     case 'registrar':
-        $codigo = $_POST['codigo'];
+        $matricula = $_POST['matricula'];
         $accion = $_POST['radio'];
-        $consult = $asistencias->getEstudiante($codigo);
+        $consult = $asistencias->getEstudiante($matricula);
         if (empty($consult)) {
-            $res = array('tipo' => 'error', 'mensaje' => 'LA MATRÍCULANO EXISTE');
+            $res = array('tipo' => 'error', 'mensaje' => 'LA MATRÍCULA NO EXISTE');
         } else {
             $fecha = date('Y-m-d');
             if ($accion == 'entrada') {
@@ -81,7 +82,8 @@ switch ($option) {
             $result['id'] = $row['id'];
             $result['label'] = $row['nombre'];
             $result['carrera'] = $row['id_carrera'];
-            $result['nivel'] = $row['id_nivel'];
+            $result['semestre'] = $row['id_semestre'];
+            $result['grupo'] = $row['id_grupo'];
             array_push($array, $result);
         }
         echo json_encode($array);

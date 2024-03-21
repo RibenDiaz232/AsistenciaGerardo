@@ -1,12 +1,16 @@
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
 -- Host: localhost    Database: asistencia
+-- Host: localhost    Database: asistencia
 -- ------------------------------------------------------
+-- Server version	8.3.0
 -- Server version	8.3.0
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
 /*!50503 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
@@ -22,11 +26,15 @@
 DROP TABLE IF EXISTS `asistencias`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `asistencias` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `id` int NOT NULL AUTO_INCREMENT,
   `ingreso` datetime NOT NULL,
   `salida` datetime DEFAULT NULL,
   `fecha` date NOT NULL,
+  `id_estudiante` int NOT NULL,
+  `estado` enum('1','2','3','4') CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL DEFAULT '1',
   `id_estudiante` int NOT NULL,
   `estado` enum('1','2','3','4') CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
@@ -52,11 +60,16 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `carreras`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `carreras` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL DEFAULT '',
   `estado` int NOT NULL DEFAULT '1',
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL DEFAULT '',
+  `estado` int NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -66,6 +79,7 @@ CREATE TABLE `carreras` (
 
 LOCK TABLES `carreras` WRITE;
 /*!40000 ALTER TABLE `carreras` DISABLE KEYS */;
+INSERT INTO `carreras` VALUES (1,'Ing. en Sistemas Computacionales',1),(2,'Ing. en Gestión Empresarial',1),(3,'Ing. en Mecatrónica',1),(4,'Ing. Ambiental',1),(5,'Ing. en Industrias Alimentarias',1);
 INSERT INTO `carreras` VALUES (1,'Ing. en Sistemas Computacionales',1),(2,'Ing. en Gestión Empresarial',1),(3,'Ing. en Mecatrónica',1),(4,'Ing. Ambiental',1),(5,'Ing. en Industrias Alimentarias',1);
 /*!40000 ALTER TABLE `carreras` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -77,7 +91,13 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `configuracion`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `configuracion` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `telefono` varchar(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `email` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `direccion` text CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
   `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
   `telefono` varchar(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
@@ -85,12 +105,14 @@ CREATE TABLE `configuracion` (
   `direccion` text CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 -- Dumping data for table `configuracion`
 --
 
 LOCK TABLES `configuracion` WRITE;
 /*!40000 ALTER TABLE `configuracion` DISABLE KEYS */;
+INSERT INTO `configuracion` VALUES (1,'Asistencia ITSMT','12344567890','principal@gmail.com','Martinez de la Torre, Ver.');
 INSERT INTO `configuracion` VALUES (1,'Asistencia ITSMT','12344567890','principal@gmail.com','Martinez de la Torre, Ver.');
 /*!40000 ALTER TABLE `configuracion` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -101,6 +123,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `estudiantes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `estudiantes` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -127,6 +150,7 @@ CREATE TABLE `estudiantes` (
 LOCK TABLES `estudiantes` WRITE;
 /*!40000 ALTER TABLE `estudiantes` DISABLE KEYS */;
 INSERT INTO `estudiantes` VALUES (1,'210i0072','Jesús Rubén','Díaz Cano','2321241298','Lázaro Cárdenas No. 308, Col. Ejidal',1,1,6),(2,'210i0028','José Martin','Mendoza Perdomo','2251234567','QWERTY',1,1,6),(3,'210i0019','Erick Santiago','González Marín','2321234567','QWERTYU',1,1,6),(4,'190i0118','Andrea','Pérez Guerrero','2324567890','Calle 123, Ciudad H',1,1,12);
+INSERT INTO `estudiantes` VALUES (1,'210i0072','Jesús Rubén','Díaz Cano','2321241298','Lázaro Cárdenas No. 308, Col. Ejidal',1,1,6),(2,'210i0028','José Martin','Mendoza Perdomo','2251234567','QWERTY',1,1,6),(3,'210i0019','Erick Santiago','González Marín','2321234567','QWERTYU',1,1,6),(4,'190i0118','Andrea','Pérez Guerrero','2324567890','Calle 123, Ciudad H',1,1,12);
 /*!40000 ALTER TABLE `estudiantes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -142,6 +166,7 @@ CREATE TABLE `niveles` (
   `nombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL DEFAULT '',
   `estado` int NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -159,6 +184,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `usuario` (
   `idusuario` int NOT NULL AUTO_INCREMENT,

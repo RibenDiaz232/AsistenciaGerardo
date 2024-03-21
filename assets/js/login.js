@@ -50,11 +50,23 @@ document.addEventListener('DOMContentLoaded', function () {
                             }, 2000);
 
                         }, 3000);
+
+                    } else {
+                        setTimeout(function () {
+                            $state.html('Login');
+                            $this.removeClass('ok loading');
+                            working = false;
+                            message(info.tipo, info.mensaje);
+                        }, 2000);
                     }
+                })
+                .catch(function (error) {
+                    console.log(error);
                 });
         }
-    };
-});
+    }
+
+})
 
 function message(tipo, mensaje) {
     Snackbar.show({

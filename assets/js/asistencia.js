@@ -1,5 +1,6 @@
 let carrera = document.getElementById('carrera');
-let nivel = document.getElementById('nivel');
+let semestre = document.getElementById('semestre');
+let grupo = document.getElementById('grupo');
 document.addEventListener('DOMContentLoaded', function () {
   $('#table_asistencia').DataTable({
     ajax: {
@@ -9,10 +10,11 @@ document.addEventListener('DOMContentLoaded', function () {
     columns: [
       { data: 'id' },
       { data: 'fecha' },
-      { data: 'codigo' },
+      { data: 'matricula' },
       { data: 'nombre' },
       { data: 'carrera' },
-      { data: 'nivel' },
+      { data: 'semestre' },
+      { data: 'grupo' },
       { data: 'ingreso' },
       { data: 'salida' },
       { data: 'accion' }
@@ -24,18 +26,26 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   cargarCarreras();
-  cargarNiveles();
+  cargarSemestres();
+  cargarGrupos();
 
   carrera.addEventListener('change', function (e) {
-    if (e.target.value != '' && nivel.value != '') {
-      cargarDatos(e.target.value, nivel.value);
+    if (e.target.value != '' && semestre.value != '' && grupo.value != '') {
+      cargarDatos(e.target.value, semestre.value, grupo.value);
     }
     console.log(e.target.value);
   });
 
-  nivel.addEventListener('change', function (e) {
-    if (e.target.value != '' && carrera.value != '') {
-      cargarDatos(carrera.value, e.target.value);
+  semestre.addEventListener('change', function (e) {
+    if (e.target.value != '' && carrera.value != '' && grupo.value != '') {
+      cargarDatos(carrera.value, e.target.value, grupo.value);
+    }
+    console.log(e.target.value);
+  });
+  
+  grupo.addEventListener('change', function (e) {
+    if (e.target.value != '' && carrera.value != '' && semestre.value != '') {
+      cargarDatos(carrera.value, semestre.value, e.target.value);
     }
     console.log(e.target.value);
   });
@@ -56,21 +66,36 @@ function cargarCarreras() {
     });
 }
 
-function cargarNiveles() {
-  axios.get(ruta + 'controllers/estudiantesController.php?option=datos&item=niveles')
+function cargarSemestres() {
+  axios.get(ruta + 'controllers/estudiantesController.php?option=datos&item=semestres')
     .then(function (response) {
       const info = response.data;
       let html = '<option value="">Seleccionar</option>';
-      info.forEach(nivel => {
-        html += `<option value="${nivel.id}">${nivel.nombre}</option>`;
+      info.forEach(semestre => {
+        html += `<option value="${semestre.id}">${semestre.nombre}</option>`;
       });
-      nivel.innerHTML = html;
+      semestre.innerHTML = html;
     })
     .catch(function (error) {
       console.log(error);
     });
 }
 
-function cargarDatos(carrera, nivel) {
-  window.location = ruta + 'plantilla.php?pagina=ver&carrera=' + carrera + '&nivel=' + nivel;
+function cargarGrupos() {
+  axios.get(ruta + 'controllers/estudiantesController.php?option=datos&item=grupos')
+    .then(function (response) {
+      const info = response.data;
+      let html = '<option value="">Seleccionar</option>';
+      info.forEach(grupo => {
+        html += `<option value="${grupo.id}">${grupo.nombre}</option>`;
+      });
+      grupo.innerHTML = html;
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+}
+
+function cargarDatos(carrera, semestre, grupo) {
+  window.location = ruta + 'plantilla.php?pagina=ver&carrera=' + carrera + '&semestre=' + semestre + '&grupo=' + grupo;
 }
