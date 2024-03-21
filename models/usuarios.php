@@ -1,6 +1,7 @@
 <?php
 require_once '../config.php';
 require_once 'conexion.php';
+
 class UsuariosModel{
     private $pdo, $con;
     public function __construct() {
@@ -14,7 +15,6 @@ class UsuariosModel{
         $consult->execute();
         return $consult->fetchAll(PDO::FETCH_ASSOC);
     }
-
     public function getUser($id)
     {
         $consult = $this->pdo->prepare("SELECT * FROM usuario WHERE idusuario = ?");
@@ -45,6 +45,25 @@ class UsuariosModel{
     {
         $consult = $this->pdo->prepare("UPDATE usuario SET nombre=?, correo=?, direccion=? WHERE idusuario=?");
         return $consult->execute([$nombre, $correo, $direccion, $id]);
+    }
+
+    public function asignarRol($id, $rol)
+    {
+        $consult = $this->pdo->prepare("INSERT INTO usuario_rol (idusuario, idrol) VALUES (?,?)");
+        return $consult->execute([$id, $rol]);
+    }
+
+    public function quitarRol($id_usuario, $id_rol)
+    {
+        $consult = $this->pdo->prepare("DELETE FROM usuario_rol WHERE idusuario = ? AND idrol = ?");
+        return $consult->execute([$id_usuario, $id_rol]);
+    }
+
+    public function obtenerRolesUsuario($id_usuario)
+    {
+        $consult = $this->pdo->prepare("SELECT r.* FROM roles r INNER JOIN usuarios_roles ur ON r.id = ur.id_rol WHERE ur.id_usuario = ?");
+        $consult->execute([$id_usuario]);
+        return $consult->fetchAll(PDO::FETCH_ASSOC);
     }
 }
 

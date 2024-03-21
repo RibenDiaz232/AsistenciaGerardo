@@ -32,6 +32,15 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-4">
+                    <label for="">Roles</label>
+                    <select>
+                        <option value="0">Seleccione un rol</option>
+                        <option value="1">Administrador</option>
+                        <option value="2">Jefe de Carrera</option>
+                        <option value="3">Docente</option>
+                    </select>
+                </div>
         </div>
         <div class="card-footer text-end">
             <button type="button" class="btn btn-danger" id="btn-nuevo">Nuevo</button>
@@ -49,6 +58,7 @@
                         <th scope="col">Nombre</th>
                         <th scope="col">Correo</th>
                         <th scope="col">Dirección</th>
+                        <th scope="col">Roles</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -78,3 +88,29 @@
         </div>
     </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    //JavaScript para cargar los roles dinamicamente
+    $(document).ready(function() {
+        //Realiza una soliciutd AJAX para obtener los roles
+        $.ajax({
+            url: 'usuarios/obtener_roles.php',
+            type: 'GET',
+            dataType: 'json',
+            success: function(data){
+                //Itera sobre los datos recibidos y agrega opciones al select
+                $.each(data, function(index, rol){
+                    $('#roles').append('<option>',{
+                        value: rol.idrol,
+                        text: rol.nombre
+                    });
+                    });
+                },
+                error: function(xhr, status, error){
+                    console.error('Error al obtener los roles', error);
+                }
+            })
+                
+            });
+</script>
