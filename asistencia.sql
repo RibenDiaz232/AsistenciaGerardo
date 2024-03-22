@@ -32,7 +32,7 @@ CREATE TABLE `asistencias` (
   PRIMARY KEY (`id`),
   KEY `id_estudiante` (`id_estudiante`),
   CONSTRAINT `asistencias_ibfk_1` FOREIGN KEY (`id_estudiante`) REFERENCES `estudiantes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `asistencias` (
 
 LOCK TABLES `asistencias` WRITE;
 /*!40000 ALTER TABLE `asistencias` DISABLE KEYS */;
-INSERT INTO `asistencias` VALUES (1,'2024-03-03 17:00:59','2024-03-03 19:27:55','2024-03-03',1,'1'),(2,'2024-03-04 09:24:26','2024-03-04 09:24:39','2024-03-04',3,'1'),(3,'2024-03-06 18:52:00',NULL,'2024-03-06',3,'1'),(4,'2024-03-08 17:07:30',NULL,'2024-03-08',2,'1'),(5,'2024-03-08 17:07:47','2024-03-08 17:08:20','2024-03-08',3,'1'),(6,'2024-03-08 17:08:03','2024-03-08 18:43:04','2024-03-08',1,'1'),(7,'2024-03-21 13:53:46',NULL,'2024-03-21',1,'1');
+INSERT INTO `asistencias` VALUES (1,'2024-03-03 17:00:59','2024-03-03 19:27:55','2024-03-03',1,'1'),(2,'2024-03-04 09:24:26','2024-03-04 09:24:39','2024-03-04',3,'1'),(3,'2024-03-06 18:52:00',NULL,'2024-03-06',3,'1'),(4,'2024-03-08 17:07:30',NULL,'2024-03-08',2,'1'),(5,'2024-03-08 17:07:47','2024-03-08 17:08:20','2024-03-08',3,'1'),(6,'2024-03-08 17:08:03','2024-03-08 18:43:04','2024-03-08',1,'1'),(7,'2024-03-21 13:53:46','2024-03-21 18:05:58','2024-03-21',1,'1'),(8,'2024-03-21 14:45:33','2024-03-21 14:45:40','2024-03-21',2,'1');
 /*!40000 ALTER TABLE `asistencias` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -114,12 +114,15 @@ CREATE TABLE `estudiantes` (
   `estado` int NOT NULL DEFAULT '1',
   `id_carrera` int NOT NULL,
   `id_semestre` int NOT NULL,
+  `id_grupo` int NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   KEY `id_carrera` (`id_carrera`),
   KEY `id_semestre` (`id_semestre`),
+  KEY `id_grupo` (`id_grupo`),
   CONSTRAINT `estudiantes_ibfk_1` FOREIGN KEY (`id_carrera`) REFERENCES `carreras` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `estudiantes_ibfk_2` FOREIGN KEY (`id_semestre`) REFERENCES `semestres` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
+  CONSTRAINT `estudiantes_ibfk_2` FOREIGN KEY (`id_semestre`) REFERENCES `semestres` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `estudiantes_ibfk_3` FOREIGN KEY (`id_grupo`) REFERENCES `grupos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -128,8 +131,33 @@ CREATE TABLE `estudiantes` (
 
 LOCK TABLES `estudiantes` WRITE;
 /*!40000 ALTER TABLE `estudiantes` DISABLE KEYS */;
-INSERT INTO `estudiantes` VALUES (1,'210i0072','Jesús Rubén','Díaz Cano','2321241298','Lázaro Cárdenas No. 308, Col. Ejidal',1,1,6),(2,'210i0028','José Martin','Mendoza Perdomo','2251234567','QWERTY',1,1,6),(3,'210i0019','Erick Santiago','González Marín','2321234567','QWERTYU',1,1,6),(4,'190i0118','Andrea','Pérez Guerrero','2324567890','Calle 123, Ciudad H',1,1,12);
+INSERT INTO `estudiantes` VALUES (1,'210i0072','Jesús Rubén','Díaz Cano','2321241298','Lázaro Cárdenas No. 308, Col. Ejidal',1,1,6,1),(2,'210i0028','José Martin','Mendoza Perdomo','2251234567','QWERTY',1,1,6,1),(3,'210i0019','Erick Santiago','González Marín','2321234567','QWERTYU',1,1,6,1),(4,'190i0118','Andrea','Pérez Guerrero','2324567890','Calle 123, Ciudad H',1,1,12,1),(5,'210i0001','Brandon','Hernandez López','1234567890','qwerty',1,1,6,2);
 /*!40000 ALTER TABLE `estudiantes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `grupos`
+--
+
+DROP TABLE IF EXISTS `grupos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `grupos` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL DEFAULT '',
+  `estado` int NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `grupos`
+--
+
+LOCK TABLES `grupos` WRITE;
+/*!40000 ALTER TABLE `grupos` DISABLE KEYS */;
+INSERT INTO `grupos` VALUES (1,'A',1),(2,'B',1),(3,'F',1);
+/*!40000 ALTER TABLE `grupos` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -144,7 +172,7 @@ CREATE TABLE `semestres` (
   `nombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL DEFAULT '',
   `estado` int NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -195,4 +223,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-03-21 13:40:06
+-- Dump completed on 2024-03-21 18:07:13
