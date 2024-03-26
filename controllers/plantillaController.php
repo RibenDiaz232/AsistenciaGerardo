@@ -27,6 +27,11 @@ class Plantilla{
     {
         include_once 'views/estudiantes/carrera.php';
     }
+    ###### pagina asignaturas #####
+    public function asignaturas()
+    {
+        include_once 'views/asignaturas/index.php';
+    }
     ###### pagina asistencia #####
     public function asistencia()
     {

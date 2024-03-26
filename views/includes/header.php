@@ -86,6 +86,12 @@
             <span class="menu-title">Grupos</span>
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="?pagina=asignaturas">
+            <i class="mdi mdi-book-multiple menu-icon"></i>
+            <span class="menu-title">Asignaturas</span>
+          </a>
+        </li>
       </ul>
       
         <button id="themeButton">Cambiar Tema (Pendiente de Asignar y posición)</button>
