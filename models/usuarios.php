@@ -29,11 +29,11 @@ class UsuariosModel{
         return $consult->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function saveUser($nombre, $correo, $clave, $direccion)
-    {
-        $consult = $this->pdo->prepare("INSERT INTO usuario (nombre, correo, clave, direccion) VALUES (?,?,?,?)");
-        return $consult->execute([$nombre, $correo, $clave, $direccion]);
-    }
+    public function saveUser($nombre, $correo, $clave, $direccion, $id_cargo)
+{
+    $consult = $this->pdo->prepare("INSERT INTO usuario (nombre, correo, clave, direccion, id_cargo) VALUES (?,?,?,?,?)");
+    return $consult->execute([$nombre, $correo, $clave, $direccion, $id_cargo]);
+}
 
     public function deleteUser($id)
     {
@@ -41,11 +41,11 @@ class UsuariosModel{
         return $consult->execute([0, $id]);
     }
 
-    public function updateUser($nombre, $correo, $direccion, $id)
-    {
-        $consult = $this->pdo->prepare("UPDATE usuario SET nombre=?, correo=?, direccion=? WHERE idusuario=?");
-        return $consult->execute([$nombre, $correo, $direccion, $id]);
-    }
+    public function updateUser($nombre, $correo, $direccion, $id, $id_cargo)
+{
+    $consult = $this->pdo->prepare("UPDATE usuario SET nombre=?, correo=?, direccion=?, id_cargo=? WHERE idusuario=?");
+    return $consult->execute([$nombre, $correo, $direccion, $id_cargo, $id]);
+}
 
     public function asignarRol($id, $rol)
     {

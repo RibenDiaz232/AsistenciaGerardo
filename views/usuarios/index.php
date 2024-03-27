@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario de Usuario</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
+    <!-- Agrega tus enlaces a estilos CSS aquí -->
 </head>
 <body>
     <form id="frmUser" autocomplete="off">
@@ -45,9 +44,6 @@
                         <label for="roles">Roles</label>
                         <select id="roles" name="id_cargo" class="form-select">
                             <option value="0">Seleccione un rol</option>
-                            <option value="1">Administrador</option>
-                            <option value="2">Jefe de carrera</option>
-                            <option value="3">Docente</option>
                         </select>
                     </div>
                 </div>

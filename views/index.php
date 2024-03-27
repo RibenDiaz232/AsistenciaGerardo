@@ -55,7 +55,7 @@
                 <form id="contactForm" autocomplete="off">
                     <!-- Email address input-->
                     <div class="row input-group-newsletter">
-                        <div class="col"><input class="form-control" id="matricula" name="matricula" type="text" placeholder="Ingrese su matrícula" /></div>
+                        <div class="col"><input class="form-control" id="matricula" name="matricula" type="text" placeholder=" su matrícula" /></div>
                         <div class="col-auto"><button class="btn btn-primary" id="submitButton" type="submit">Registrar</button></div>
                     </div>
 

@@ -1,13 +1,13 @@
 <?php
-//Import PHPMailer classes into the global namespace
-//These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 require_once '../models/usuarios.php';
+
 $option = (empty($_GET['option'])) ? '' : $_GET['option'];
 $usuarios = new UsuariosModel();
+
 switch ($option) {
     case 'acceso':
         $accion = file_get_contents('php://input');
@@ -47,11 +47,12 @@ switch ($option) {
         $direccion = $_POST['direccion'];
         $clave = $_POST['clave'];
         $id_user = $_POST['id_user'];
+        $id_cargo = $_POST['id_cargo'];
         if ($id_user == '') {
             $consult = $usuarios->comprobarCorreo($correo);
             if (empty($consult)) {
                 $hash = password_hash($clave, PASSWORD_DEFAULT);
-                $result = $usuarios->saveUser($nombre, $correo, $hash, $direccion);
+                $result = $usuarios->saveUser($nombre, $correo, $hash, $direccion, $id_cargo);
                 if ($result) {
                     $res = array('tipo' => 'success', 'mensaje' => 'USUARIO REGISTRADO');
                 } else {
@@ -61,7 +62,7 @@ switch ($option) {
                 $res = array('tipo' => 'error', 'mensaje' => 'EL CORREO YA EXISTE');
             }
         } else {
-            $result = $usuarios->updateUser($nombre, $correo, $direccion, $id_user);
+            $result = $usuarios->updateUser($nombre, $correo, $direccion, $id_user, $id_cargo);
             if ($result) {
                 $res = array('tipo' => 'success', 'mensaje' => 'USUARIO MODIFICADO');
             } else {
@@ -94,7 +95,12 @@ switch ($option) {
         }
         echo json_encode($res);        
         break;
+    case 'get_roles':
+        $roles = $usuarios->getCargo(); // Función para obtener los roles desde la base de datos
+        echo json_encode($roles);
+        break;
     default:
         # code...
         break;
 }
+?>
