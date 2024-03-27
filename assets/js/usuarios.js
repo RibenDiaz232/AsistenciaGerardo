@@ -6,6 +6,7 @@ const clave = document.querySelector('#clave');
 const id_user = document.querySelector('#id_user');
 const btn_nuevo = document.querySelector('#btn-nuevo');
 const btn_save = document.querySelector('#btn-save');
+
 document.addEventListener('DOMContentLoaded', function () {
   $('#table_users').DataTable({
     ajax: {
@@ -17,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
       { data: 'nombre' },
       { data: 'correo' },
       { data: 'direccion' },
+      { data: 'id_cargo'},
       { data: 'accion' }
     ],
     language: {
