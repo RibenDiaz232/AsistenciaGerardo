@@ -23,14 +23,18 @@ class Plantilla{
     {
         include_once 'views/estudiantes/grupo.php';
     }
+    public function asignaturas()
+    {
+        include_once 'views/estudiantes/asignatura.php';
+    }
     public function carreras()
     {
         include_once 'views/estudiantes/carrera.php';
     }
-    ###### pagina asignaturas #####
-    public function asignaturas()
+    ###### pagina reticulas #####
+    public function reticulas()
     {
-        include_once 'views/asignaturas/index.php';
+        include_once 'views/reticulas/index.php';
     }
     ###### pagina asistencia #####
     public function asistencia()

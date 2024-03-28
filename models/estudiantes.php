@@ -10,7 +10,10 @@ class EstudiantesModel{
 
     public function getEstudiantes()
     {
-        $consult = $this->pdo->prepare("SELECT e.*, c.nombre AS carrera, s.nombre AS semestre, g.nombre AS grupo FROM estudiantes e INNER JOIN carreras c ON e.id_carrera = c.id INNER JOIN semestres s ON e.id_semestre = s.id INNER JOIN grupos g ON e.id_grupo = g.id WHERE e.estado = 1");
+        $consult = $this->pdo->prepare("SELECT e.*, c.nombre AS carrera, s.nombre AS semestre, g.nombre AS grupo FROM estudiantes e 
+        INNER JOIN carreras c ON e.id_carrera = c.id 
+        INNER JOIN semestres s ON e.id_semestre = s.id 
+        INNER JOIN grupos g ON e.id_grupo = g.id WHERE e.estado = 1");
         $consult->execute();
         return $consult->fetchAll(PDO::FETCH_ASSOC);
     }

@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
       dataSrc: ''
     },
     columns: [
+      { data: 'id' },
       { data: 'nombre' },
       { data: 'codigo' },
       { data: 'accion' }
@@ -18,11 +19,11 @@ document.addEventListener('DOMContentLoaded', function () {
     language: {
       url: 'https://cdn.datatables.net/plug-ins/1.13.1/i18n/es-ES.json'
     },
-    "order": [[0, 'desc']]
+    "order": [[0, 'asc']]
   });
   frm.onsubmit = function (e) {
     e.preventDefault();
-    if (nombre.value == '') {
+    if (nombre.value == '', codigo.value == '') {
       message('error', 'TODO LOS CAMPOS CON * SON REQUERIDOS')
     } else {
       const frmData = new FormData(frm);
@@ -79,6 +80,7 @@ function edit(id) {
     .then(function (response) {
       const info = response.data;
       nombre.value = info.nombre;
+      codigo.value = info.codigo;
       id_asignatura.value = info.id;
       btn_save.innerHTML = 'Actualizar';
       nombre.focus();

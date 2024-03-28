@@ -16,31 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `asignaturas`
+-- Table structure for table `reticulas`
 --
 
-DROP TABLE IF EXISTS `asignaturas`;
+DROP TABLE IF EXISTS `reticulas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `asignaturas` (
+CREATE TABLE `reticulas` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   `clave` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   `id_carrera` int NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_asignaturas_carrera_idx` (`id_carrera`),
-  CONSTRAINT `fk_asignaturas_carrera` FOREIGN KEY (`id_carrera`) REFERENCES `carreras` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `fk_reticulas_carrera_idx` (`id_carrera`),
+  CONSTRAINT `fk_reticulas_carrera` FOREIGN KEY (`id_carrera`) REFERENCES `carreras` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `asignaturas`
+-- Dumping data for table `reticulas`
 --
 
-LOCK TABLES `asignaturas` WRITE;
-/*!40000 ALTER TABLE `asignaturas` DISABLE KEYS */;
-INSERT INTO `asignaturas` VALUES (1,'Matemáticas','MAT001',1),(2,'Ciencias','CIE002',1),(3,'Física','FIS003',1),(4,'Programación','PRO004',1),(5,'Literatura','LIT005',1),(6,'Historia','HIS006',1);
-/*!40000 ALTER TABLE `asignaturas` ENABLE KEYS */;
+LOCK TABLES `reticulas` WRITE;
+/*!40000 ALTER TABLE `reticulas` DISABLE KEYS */;
+INSERT INTO `reticulas` VALUES (1,'Matemáticas','MAT001',1),(2,'Ciencias','CIE002',1),(3,'Física','FIS003',1),(4,'Programación','PRO004',1),(5,'Literatura','LIT005',1),(6,'Historia','HIS006',1);
+/*!40000 ALTER TABLE `reticulas` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -98,30 +98,30 @@ INSERT INTO `cargo` VALUES (1,'Administrador'),(2,'Jefe de carrera'),(3,'Docente
 UNLOCK TABLES;
 
 --
--- Table structure for table `carrera_asignatura`
+-- Table structure for table `carrera_reticula`
 --
 
-DROP TABLE IF EXISTS `carrera_asignatura`;
+DROP TABLE IF EXISTS `carrera_reticula`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `carrera_asignatura` (
+CREATE TABLE `carrera_reticula` (
   `id_carrera` int NOT NULL,
-  `id_asignatura` int NOT NULL,
-  PRIMARY KEY (`id_carrera`,`id_asignatura`),
-  KEY `fk_ca_asignatura_idx` (`id_asignatura`),
-  CONSTRAINT `fk_ca_asignatura` FOREIGN KEY (`id_asignatura`) REFERENCES `asignaturas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  `id_reticula` int NOT NULL,
+  PRIMARY KEY (`id_carrera`,`id_reticula`),
+  KEY `fk_ca_reticula_idx` (`id_reticula`),
+  CONSTRAINT `fk_ca_reticula` FOREIGN KEY (`id_reticula`) REFERENCES `reticulas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_ca_carrera` FOREIGN KEY (`id_carrera`) REFERENCES `carreras` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `carrera_asignatura`
+-- Dumping data for table `carrera_reticula`
 --
 
-LOCK TABLES `carrera_asignatura` WRITE;
-/*!40000 ALTER TABLE `carrera_asignatura` DISABLE KEYS */;
-INSERT INTO `carrera_asignatura` VALUES (1,1),(1,2),(1,3),(1,4),(1,5),(1,6);
-/*!40000 ALTER TABLE `carrera_asignatura` ENABLE KEYS */;
+LOCK TABLES `carrera_reticula` WRITE;
+/*!40000 ALTER TABLE `carrera_reticula` DISABLE KEYS */;
+INSERT INTO `carrera_reticula` VALUES (1,1),(1,2),(1,3),(1,4),(1,5),(1,6);
+/*!40000 ALTER TABLE `carrera_reticula` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -275,15 +275,15 @@ DROP TABLE IF EXISTS `horario`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `horario` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `id_asignatura` int NOT NULL,
+  `id_reticula` int NOT NULL,
   `id_docente` int NOT NULL,
   `dia_semana` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci NOT NULL,
   `hora_inicio` time NOT NULL,
   `hora_fin` time NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_horario_asignatura_idx` (`id_asignatura`),
+  KEY `fk_horario_reticula_idx` (`id_reticula`),
   KEY `fk_horario_docente_idx` (`id_docente`),
-  CONSTRAINT `fk_horario_asignatura` FOREIGN KEY (`id_asignatura`) REFERENCES `asignaturas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `fk_horario_reticula` FOREIGN KEY (`id_reticula`) REFERENCES `reticulas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_horario_docente` FOREIGN KEY (`id_docente`) REFERENCES `usuario` (`idusuario`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;

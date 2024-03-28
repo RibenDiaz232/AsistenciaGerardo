@@ -20,7 +20,7 @@ switch ($option) {
         if ($id_asignatura == '') {
             $consult = $asignaturas->comprobarNombre($nombre, 0);
             if (empty($consult)) {
-                $result = $asignaturas->save($nombre,$codigo);
+                $result = $asignaturas->save($nombre, $codigo);
                 if ($result) {
                     $res = array('tipo' => 'success', 'mensaje' => 'asignatura REGISTRADO');
                 } else {

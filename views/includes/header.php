@@ -44,12 +44,12 @@
           <span></span>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-            <i class="mdi mdi-palette menu-icon"></i>
+          <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic-admin" aria-expanded="false" aria-controls="ui-basic-admin">
+            <i class="mdi mdi-settings menu-icon"></i>
             <span class="menu-title">Administración</span>
             <i class="menu-arrow"></i>
           </a>
-          <div class="collapse" id="ui-basic">
+          <div class="collapse" id="ui-basic-admin">
             <ul class="nav flex-column sub-menu">
               <li class="nav-item"> <a class="nav-link" href="?pagina=usuarios">Usuarios</a></li>
               <li class="nav-item"> <a class="nav-link" href="?pagina=configuracion">Configuración</a></li>
@@ -57,16 +57,19 @@
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="?pagina=carreras">
-            <i class="mdi mdi-view-headline menu-icon"></i>
-            <span class="menu-title">Carreras</span>
+          <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic-datos-internos" aria-expanded="false" aria-controls="ui-basic-datos-internos">
+            <i class="mdi mdi-shape-plus menu-icon"></i>
+            <span class="menu-title">Datos internos</span>
+            <i class="menu-arrow"></i>
           </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="?pagina=semestres">
-            <i class="mdi mdi-tag menu-icon"></i>
-            <span class="menu-title">Semestres</span>
-          </a>
+          <div class="collapse" id="ui-basic-datos-internos">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="?pagina=carreras"> <i class="mdi mdi-view-headline menu-icon"></i> Carreras</a></li>
+              <li class="nav-item"> <a class="nav-link" href="?pagina=semestres"> <i class="mdi mdi-tag menu-icon"></i> Semestres</a></li>
+              <li class="nav-item"> <a class="nav-link" href="?pagina=asignaturas"> <i class="mdi mdi-book-multiple menu-icon"></i> Asignaturas</a></li>
+              <li class="nav-item"> <a class="nav-link" href="?pagina=grupos"> <i class="mdi mdi-group menu-icon"></i> Grupos</a></li>
+            </ul>
+          </div>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="?pagina=estudiantes">
@@ -81,15 +84,9 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="?pagina=grupos">
-            <i class="mdi mdi-group menu-icon"></i>
-            <span class="menu-title">Grupos</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="?pagina=asignaturas">
-            <i class="mdi mdi-book-multiple menu-icon"></i>
-            <span class="menu-title">Asignaturas</span>
+          <a class="nav-link" href="?pagina=reticulas">
+            <i class="mdi mdi-folder-outline menu-icon"></i>
+            <span class="menu-title">Reticulas</span>
           </a>
         </li>
       </ul>

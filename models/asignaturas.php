@@ -34,19 +34,7 @@ class AsignaturasModel{
         return $consult->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function comprobarCódigo($codigo, $accion)
-    {
-        if ($accion == 0) {
-            $consult = $this->pdo->prepare("SELECT * FROM asignaturas WHERE codigo = ?");
-            $consult->execute([$codigo]);
-        } else {
-            $consult = $this->pdo->prepare("SELECT * FROM asignaturas WHERE codigo = ? AND id != ?");
-            $consult->execute([$codigo, $accion]);
-        }
-        return $consult->fetch(PDO::FETCH_ASSOC);
-    }
-
-    public function save($nombre,$codigo)
+    public function save($nombre, $codigo)
     {
         $consult = $this->pdo->prepare("INSERT INTO asignaturas (nombre, codigo) VALUES (?,?)");
         return $consult->execute([$nombre, $codigo]);
